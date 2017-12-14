@@ -36,7 +36,7 @@ import javax.interceptor.InvocationContext;
  */
 @CacheRemove
 @Interceptor
-@Priority(Interceptor.Priority.APPLICATION)
+@Priority(Interceptor.Priority.LIBRARY_AFTER)
 public class CacheRemoveEntryInterceptor extends AbstractCacheRemoveEntryInterceptor<InvocationContext> {
 
   @Inject

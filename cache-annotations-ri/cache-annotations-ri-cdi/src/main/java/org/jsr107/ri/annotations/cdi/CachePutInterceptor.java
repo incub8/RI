@@ -36,7 +36,7 @@ import javax.interceptor.InvocationContext;
  */
 @CachePut
 @Interceptor
-@Priority(Interceptor.Priority.APPLICATION)
+@Priority(Interceptor.Priority.LIBRARY_AFTER)
 public class CachePutInterceptor extends AbstractCachePutInterceptor<InvocationContext> {
 
   @Inject

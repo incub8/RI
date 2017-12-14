@@ -36,7 +36,7 @@ import javax.interceptor.InvocationContext;
  */
 @CacheResult
 @Interceptor
-@Priority(Interceptor.Priority.APPLICATION)
+@Priority(Interceptor.Priority.LIBRARY_AFTER)
 public class CacheResultInterceptor extends AbstractCacheResultInterceptor<InvocationContext> {
 
   @Inject
