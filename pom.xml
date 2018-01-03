@@ -9,13 +9,16 @@
         <!--Fixes broken Maven 3 warning-->
         <relativePath/>
     </parent>
-    <groupId>org.jsr107.ri</groupId>
-    <artifactId>cache-ri</artifactId>
-    <version>1.1.0-SNAPSHOT</version>
+
+    <groupId>com.github.mizool.jcache</groupId>
+    <artifactId>jcache</artifactId>
+    <version>0.1</version>
+
     <packaging>pom</packaging>
 
-    <name>JSR107 RI</name>
-    <url>https://github.com/jsr107/RI</url>
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Patched fork of the JCache RI to bridge JCache annotations with CDI</description>
+    <url>https://github.com/mizool/jcache</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
