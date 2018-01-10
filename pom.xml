@@ -9,13 +9,37 @@
         <!--Fixes broken Maven 3 warning-->
         <relativePath/>
     </parent>
-    <groupId>org.jsr107.ri</groupId>
-    <artifactId>cache-ri</artifactId>
-    <version>1.1.0-SNAPSHOT</version>
+
+    <groupId>com.github.mizool.jcache</groupId>
+    <artifactId>jcache</artifactId>
+    <version>0.1</version>
+
     <packaging>pom</packaging>
 
-    <name>JSR107 RI</name>
-    <url>https://github.com/jsr107/RI</url>
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Patched fork of the JCache RI to bridge JCache annotations with CDI</description>
+    <url>https://github.com/mizool/jcache</url>
+
+    <developers>
+        <developer>
+            <name>Jan Dörrenhaus</name>
+            <email>jandoerrenhaus@incub8.de</email>
+            <organization>incub8 Software Labs</organization>
+            <organizationUrl>http://www.incub8.de</organizationUrl>
+        </developer>
+        <developer>
+            <name>Jens Bannmann</name>
+            <email>jensbannmann@incub8.de</email>
+            <organization>incub8 Software Labs</organization>
+            <organizationUrl>http://www.incub8.de</organizationUrl>
+        </developer>
+        <developer>
+            <name>Sven Haberer</name>
+            <email>svenhaberer@incub8.de</email>
+            <organization>incub8 Software Labs</organization>
+            <organizationUrl>http://www.incub8.de</organizationUrl>
+        </developer>
+    </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,6 +50,19 @@
         <module>cache-annotations-ri</module>
         <module>cache-ri-impl</module>
     </modules>
+
+    <scm>
+        <connection>scm:git:git://github.com/mizool/jcache.git</connection>
+        <developerConnection>scm:git:ssh://github.com/mizool/jcache.git</developerConnection>
+        <url>https://github.com/mizool/jcache/tree/master</url>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <dependencyManagement>
         <dependencies>
@@ -76,6 +113,17 @@
                                 </pluginExecution>
                             </pluginExecutions>
                         </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>1.6.7</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <serverId>ossrh</serverId>
+                        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                        <autoReleaseAfterClose>true</autoReleaseAfterClose>
                     </configuration>
                 </plugin>
             </plugins>
@@ -161,6 +209,10 @@ onnmqmUUnpupooqqmmmmmUUnpupooqqmmmmmUUAJInmtUUn
 mmmm
 ]]></license>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
             </plugin>
 
         </plugins>
