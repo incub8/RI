@@ -1,5 +1,4 @@
-JCache Reference Implementation
-------------------------
+== JCache Reference Implementation
 
 This is the reference implementation for JCache.
 
@@ -18,3 +17,11 @@ which implement this API, is required to accomplish these things.
 
 Having said that, the RI is Apache 2 and is a correct implementation of the spec. It can be used to create new cache
 implementations.
+
+== Continuous integration and deployment on Maven Central
+This project is built continuously by https://travis-ci.org/[Travis CI] using the scripts provided by https://github.com/mizool/travis-ci-maven-gitflow[Mizool's Travis CI Maven gitflow script repository].
+
+`-SNAPSHOT` versions on the `develop` branch are made available via the https://oss.sonatype.org/content/repositories/snapshots/[OSSRH snapshot repository].
+Releases are transferred to the https://search.maven.org[Maven Central Repository].
+
+Refer to https://github.com/mizool/travis-ci-maven-gitflow/blob/master/README.adoc#performing-a-release[this guide] on how to perform a release.
