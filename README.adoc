@@ -1,5 +1,10 @@
 == JCache Reference Implementation
 
+This is a fork of the JCache reference implementation, to cover various improvements for CDI.
+
+JCache Reference Implementation
+------------------------
+
 This is the reference implementation for JCache.
 
 This implementation is not meant for production use. For that we would refer you to one of the many open source and commercial
