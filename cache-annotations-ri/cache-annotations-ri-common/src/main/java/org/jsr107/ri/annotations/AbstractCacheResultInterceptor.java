@@ -16,14 +16,17 @@
  */
 package org.jsr107.ri.annotations;
 
+import java.lang.annotation.Annotation;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.cache.Cache;
 import javax.cache.annotation.CacheKeyGenerator;
 import javax.cache.annotation.CacheResolver;
 import javax.cache.annotation.CacheResult;
 import javax.cache.annotation.GeneratedCacheKey;
-import java.lang.annotation.Annotation;
-
 
 /**
  * Interceptor for {@link CacheResult}
@@ -50,6 +53,7 @@ public abstract class AbstractCacheResultInterceptor<I> extends AbstractKeyedCac
         cacheContextSource.getCacheKeyInvocationContext(invocation);
     final CacheResultMethodDetails methodDetails =
         this.getStaticCacheKeyInvocationContext(cacheKeyInvocationContext, InterceptorType.CACHE_RESULT);
+    Class<?> methodReturnType = methodDetails.getMethod().getReturnType();
 
     //Resolve primary cache
     final CacheResolver cacheResolver = methodDetails.getCacheResolver();
@@ -70,8 +74,15 @@ public abstract class AbstractCacheResultInterceptor<I> extends AbstractKeyedCac
       //Look in cache for existing data
       result = cache.get(cacheKey);
       if (result != null) {
-        //Cache hit, return result
-        return result;
+        Object valueToReturn;
+        if (Optional.class.isAssignableFrom(methodReturnType)) {
+          valueToReturn = Optional.ofNullable(result);
+        } else if (Stream.class.isAssignableFrom(methodReturnType)) {
+          valueToReturn = ((List<?>)result).stream();
+        } else {
+          valueToReturn = result;
+        }
+        return valueToReturn;
       }
 
       //Look for a cached exception
@@ -81,10 +92,18 @@ public abstract class AbstractCacheResultInterceptor<I> extends AbstractKeyedCac
     try {
       //Call the annotated method
       result = this.proceed(invocation);
+      Object valueToCache;
+      if (Optional.class.isAssignableFrom(methodReturnType)) {
+        valueToCache = ((Optional<?>)result).orElse(null);
+      } else if (Stream.class.isAssignableFrom(methodReturnType)) {
+        valueToCache = ((Stream<?>)result).collect(Collectors.toList());
+      } else {
+        valueToCache = result;
+      }
 
       //Cache non-null result
-      if (result != null) {
-        cache.put(cacheKey, result);
+      if (valueToCache != null) {
+        cache.put(cacheKey, valueToCache);
       }
 
       return result;
