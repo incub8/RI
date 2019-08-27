@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.github.mizool.jcache</groupId>
         <artifactId>jcache</artifactId>
-        <version>0.4</version>
+        <version>0.5-SNAPSHOT</version>
     </parent>
     <artifactId>cache-annotations-ri</artifactId>
     <packaging>pom</packaging>
