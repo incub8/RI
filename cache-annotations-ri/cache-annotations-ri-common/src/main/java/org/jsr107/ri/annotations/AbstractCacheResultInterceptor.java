@@ -96,7 +96,9 @@ public abstract class AbstractCacheResultInterceptor<I> extends AbstractKeyedCac
       if (Optional.class.isAssignableFrom(methodReturnType)) {
         valueToCache = ((Optional<?>)result).orElse(null);
       } else if (Stream.class.isAssignableFrom(methodReturnType)) {
-        valueToCache = ((Stream<?>)result).collect(Collectors.toList());
+        List<?> list = ((Stream<?>) result).collect(Collectors.toList());
+        valueToCache = list;
+        result = list.stream();
       } else {
         valueToCache = result;
       }
