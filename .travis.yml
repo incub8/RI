@@ -8,3 +8,6 @@ script: "wget -q -O - https://raw.githubusercontent.com/mizool/travis-ci-maven-g
 cache:
   directories:
   - "$HOME/.m2/repository"
+
+clone:
+  depth: false
