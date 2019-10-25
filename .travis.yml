@@ -9,5 +9,5 @@ cache:
   directories:
   - "$HOME/.m2/repository"
 
-clone:
+git:
   depth: false
