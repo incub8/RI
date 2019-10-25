@@ -43,11 +43,11 @@ public final class LockManager<K> {
    *
    * @param key the key
    */
-  void lock(K key) {
+  void lock(K Key) {
     ReentrantLock lock = lockFactory.getLock();
 
     while (true) {
-      ReentrantLock oldLock = locks.putIfAbsent(key, lock);
+      ReentrantLock oldLock = locks.putIfAbsent(Key, lock);
       if (oldLock == null) {
         return;
       }
