@@ -23,5 +23,11 @@ jobs:
       - name: Check out
         uses: actions/checkout@v2
 
+      - name: Maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: maven-repo
+
       - name: Build
         run: build.sh
