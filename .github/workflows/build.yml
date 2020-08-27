@@ -1,0 +1,24 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - 'feature/**'
+
+  pull_request:
+    branches:
+      - develop
+
+# TODO add master, hotfix, release, younameit
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+
+      - name: Build
+        uses: docker://incub8softwarelabs/pipelines-build-environment:feature_CCCP-37-add-github-support
