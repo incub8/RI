@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: pipelines-build-environment:feature_CCCP-37-add-github-support
+      image: incub8softwarelabs/pipelines-build-environment:feature_CCCP-37-add-github-support
 
     steps:
       - name: Check out
