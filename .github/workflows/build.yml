@@ -14,11 +14,9 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    container:
+      image: pipelines-build-environment:feature_CCCP-37-add-github-support
 
     steps:
       - name: Check out
         uses: actions/checkout@v2
-
-      - name: Build
-        uses: docker://incub8softwarelabs/pipelines-build-environment:feature_CCCP-37-add-github-support
