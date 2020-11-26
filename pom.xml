@@ -13,7 +13,7 @@
 
     <groupId>com.github.mizool.jcache</groupId>
     <artifactId>jcache</artifactId>
-    <version>0.5</version>
+    <version>0.6</version>
 
     <packaging>pom</packaging>
 
@@ -69,6 +69,7 @@
     </distributionManagement>
 
     <properties>
+        <guava.version>25.1-jre</guava.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -76,6 +77,12 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>javax.annotation</groupId>
                 <artifactId>javax.annotation-api</artifactId>
