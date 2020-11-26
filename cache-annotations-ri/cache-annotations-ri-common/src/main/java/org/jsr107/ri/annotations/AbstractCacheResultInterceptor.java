@@ -71,8 +71,7 @@ public abstract class AbstractCacheResultInterceptor<I> extends AbstractKeyedCac
     //If skip-get is false check for a cached result or a cached exception
     Object result;
     if (!cacheResultAnnotation.skipGet()) {
-      //Look in cache for existing data
-      result = cache.get(cacheKey);
+      result = readValueFromCache(cache, cacheKey);
       if (result != null) {
         Object valueToReturn;
         if (Optional.class.isAssignableFrom(methodReturnType)) {
@@ -177,5 +176,16 @@ public abstract class AbstractCacheResultInterceptor<I> extends AbstractKeyedCac
     }
 
     return null;
+  }
+
+  private Object readValueFromCache(Cache<Object, Object> cache, GeneratedCacheKey cacheKey) {
+    //Look in cache for existing data
+    Object result = cache.get(cacheKey);
+    //Remove any old guava Optionals that may still be present
+    if (result instanceof com.google.common.base.Optional) {
+      cache.remove(cacheKey);
+      result = null;
+    }
+    return result;
   }
 }
