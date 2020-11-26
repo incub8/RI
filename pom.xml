@@ -108,6 +108,32 @@
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>2.10</version>
+                    <inherited>true</inherited>
+                    <configuration>
+                        <configLocation>${basedir}/checkstyle/checkstyle.xml</configLocation>
+                        <suppressionsLocation>${basedir}/checkstyle/suppressions.xml</suppressionsLocation>
+                        <headerLocation>${basedir}/checkstyle/ClassHeader.txt</headerLocation>
+                        <enableRSS>false</enableRSS>
+                        <linkXRef>true</linkXRef>
+                        <consoleOutput>true</consoleOutput>
+                        <failsOnError>true</failsOnError>
+                        <failOnViolation>true</failOnViolation>
+                        <includeTestSourceDirectory>false</includeTestSourceDirectory>
+                        <enableRulesSummary>true</enableRulesSummary>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>checkstyle</goal>
+                            </goals>
+                            <phase>install</phase>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-gpg-plugin</artifactId>
                     <version>1.6</version>
                     <executions>
@@ -193,32 +219,6 @@ RqnMTURNMMNQPPmnrOqSxoonrppnNNQoOPtswWXnoqtVOPP
 onnmqmUUnpupooqqmmmmmUUnpupooqqmmmmmUUAJInmtUUn
 mmmm]]></license>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.10</version>
-                <inherited>true</inherited>
-                <configuration>
-                    <configLocation>${basedir}/checkstyle/checkstyle.xml</configLocation>
-                    <suppressionsLocation>${basedir}/checkstyle/suppressions.xml</suppressionsLocation>
-                    <headerLocation>${basedir}/checkstyle/ClassHeader.txt</headerLocation>
-                    <enableRSS>false</enableRSS>
-                    <linkXRef>true</linkXRef>
-                    <consoleOutput>true</consoleOutput>
-                    <failsOnError>true</failsOnError>
-                    <failOnViolation>true</failOnViolation>
-                    <includeTestSourceDirectory>false</includeTestSourceDirectory>
-                    <enableRulesSummary>true</enableRulesSummary>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>checkstyle</goal>
-                        </goals>
-                        <phase>install</phase>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
